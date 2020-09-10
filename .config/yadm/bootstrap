@@ -1,0 +1,62 @@
+#!/bin/bash
+
+#Keep it in alphabetical order
+PACKAGES="curl emacs git zsh"
+
+apt_install(){
+    echo "Detected Ubuntu/Debian"
+
+    echo "Updating repo"
+    sud apt-get update
+
+    echo "Installing apps"
+    sudo apt-get -y install $PACKAGES
+}
+
+zypper_install(){
+    echo "Detected opensuse"
+
+    echo "Updating repo"
+    sud zypper ref
+
+    echo "Installing apps"
+    sudo zypper in -y $PACKAGES
+}
+
+
+install_spacemacs(){
+    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+    git -C ~/.emacs.d checkout develop
+}
+
+install_rustup(){
+    curl --proto '=https' --tlsv1.2 -sSfL https://sh.rustup.rs > /tmp/rustup.sh
+    chmod +x /tmp/rustup.sh
+    /tmp/rustup.sh -y --profile complete --default-toolchain nightly
+}
+
+install_zshconfig(){
+    curl --proto '=https' --tlsv1.2 -sSfL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh > /tmp/oh-my-zsh
+    chmod +x /tmp/oh-my-zsh
+
+
+    /tmp/oh-my-zsh
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+}
+
+
+#Debian, ubuntu or derivatives
+if hash 2>/dev/null apt-get ; then
+    apt_install
+#Suse or derivatives
+elif hash 2>/dev/null zypper ; then
+    zypper_install
+#Fails
+else
+    echo "Your package manager or distro is not supported"
+    exit
+fi
+
+install_spacemacs
+install_rustup
+install_zshconfig
