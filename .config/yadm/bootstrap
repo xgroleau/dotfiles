@@ -57,6 +57,7 @@ else
     exit
 fi
 
+#installing settings
 install_spacemacs
 install_rustup
 install_zshconfig
