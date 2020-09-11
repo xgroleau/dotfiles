@@ -111,23 +111,9 @@ export ARCHFLAGS="-arch x86_64"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-DEFAULT_USER="$(whoami)"
-alias vim='nvim'
-alias vimdiff='nvim -d'
-export EDITOR='nvim'
 
-export "PATH=$HOME/.cargo/bin:$PATH"
-
-
-#ROS docker setup
-
-export UID=${UID}
-export GID=${GID}
-
-source ~/.docker-ros/ros.sh
-
-# OPTIONAL: Isolate the default HOME for the docker container if you don't want to passthrough your own.
-ROS_DOCKER_HOME=/home/xavier/catkin_ws
+#Loading local configuration
+source ~/.zshrc.local 2> /dev/null
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

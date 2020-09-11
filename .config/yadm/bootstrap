@@ -44,6 +44,11 @@ install_zshconfig(){
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 }
 
+#Since YADM pull thens calls bootstrap, we need to revert changes to get the config since installers puts the default config
+write_config(){
+    yadm reset --hard
+}
+
 
 #Debian, ubuntu or derivatives
 if hash 2>/dev/null apt-get ; then
@@ -61,3 +66,4 @@ fi
 install_spacemacs
 install_rustup
 install_zshconfig
+write_config
