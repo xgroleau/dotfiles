@@ -1,29 +1,69 @@
 #!/bin/bash
 
-#Keep it in alphabetical order
-PACKAGES="curl emacs git zsh"
+PACKAGES="curl emacs git zsh" #Keep it in alphabetical order
 
+#------------Help------------#
+help(){
+    echo ""
+    echo "A bootstrap script for YADM, this installs all dependencies for my dotfiles"
+    echo "Note that YADM should call this script automatically, no need to call it again, unless there is an update"
+    echo "This install ${PACAKGES} spacemacs rust zsh and powerlevel10k"
+    echo ""
+
+    echo "Usage:"
+    echo "      -h to show this scree"
+    echo "      -d to debug, does not redirect stdout to /dev/null"
+    echo ""
+}
+
+echo_info() {
+    echo "${GREEN}$@${RESET}"
+}
+
+echo_error(){
+    echo "${RED}$@${RESET}" >&2
+}
+
+#------------Package installers------------#
 apt_install(){
-    echo "Detected Ubuntu/Debian"
+    #needed to prevent tz setting to request interaction
+    #should not really happen in the real world, only happens in containers
+    export DEBIAN_FRONTEND=noninteractive
 
-    echo "Updating repo"
-    sud apt-get update
+    echo_info "Detected Ubuntu/Debian"
 
-    echo "Installing apps"
-    sudo apt-get -y install $PACKAGES
+    echo_info "Updating repo"
+    sudo -preserve-env apt-get update
+
+    echo_info "Installing apps"
+    sudo -preserve-env  apt-get -y install $PACKAGES
 }
 
 zypper_install(){
-    echo "Detected opensuse"
+    echo_info "Detected opensuse"
 
-    echo "Updating repo"
+    echo_info "Updating repo"
     sud zypper ref
 
-    echo "Installing apps"
+    echo_info "Installing apps"
     sudo zypper in -y $PACKAGES
 }
 
+install_packages(){
+    #Debian, ubuntu or derivatives
+    if hash 2>/dev/null apt-get ; then
+        apt_install
+    #Suse or derivatives
+    elif hash 2>/dev/null zypper ; then
+        zypper_install
+    #Fails
+    else
+        echo_error "Your package manager is not supported" 
+        exit 1
+    fi
+}
 
+#------------Config installers------------#
 install_spacemacs(){
     git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
     git -C ~/.emacs.d checkout develop
@@ -40,30 +80,56 @@ install_zshconfig(){
     chmod +x /tmp/oh-my-zsh
 
 
-    /tmp/oh-my-zsh
+    /tmp/oh-my-zsh --keep-zshrc --unattended
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+
+    if ! chsh -s "$zsh"; then
+		echo_error "chsh command unsuccessful. Change your default shell manually."
+	else
+		export SHELL="$zsh"
+		echo_info "Shell successfully changed to '$zsh'."
+	fi
+
+
 }
 
-#Since YADM pull thens calls bootstrap, we need to revert changes to get the config since installers puts the default config
-write_config(){
-    yadm reset --hard
+#------------Main------------#
+exec() {
+    echo_info "Installing packages (This may take a while)"
+    install_packages
+
+    echo_info "Installing spacemacs"
+    install_spacemacs
+
+    echo_info "Installing rust (This may take a while)"
+    install_rustup
+
+    echo_info "Installing zsh"
+    install_zshconfig
+
+    exit 0
 }
 
 
-#Debian, ubuntu or derivatives
-if hash 2>/dev/null apt-get ; then
-    apt_install
-#Suse or derivatives
-elif hash 2>/dev/null zypper ; then
-    zypper_install
-#Fails
-else
-    echo "Your package manager or distro is not supported"
-    exit
-fi
+#------------Argument parsing------------#
+while (( "$#" )); do
+  case "$1" in
+    -h|--help)
+      help
+      exit 0
+      ;;
+    -*|--*=) # unsupported flags
+      echo "Error: Unsupported flag $1" >&2
+      exit 1
+      ;;
+    *) # preserve positional arguments
+      PARAMS="$PARAMS $1"
+      shift
+      ;;
+  esac
+done #set positional arguments in their proper place
+eval set -- "$PARAMS"
 
-#installing settings
-install_spacemacs
-install_rustup
-install_zshconfig
-write_config
+#------------Programm exec------------
+exec
