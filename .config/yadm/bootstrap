@@ -23,7 +23,7 @@ help(){
 }
 
 echo_info() {
-    echo "${GREEN}$@${RESET}"
+    echo "${BLUE}$@${RESET}"
 }
 
 echo_error(){
@@ -49,7 +49,7 @@ zypper_install(){
     echo_info "Detected opensuse"
 
     echo_info "Updating repo"
-    sud zypper ref
+    sudo zypper ref
 
     echo_info "Installing apps"
     sudo zypper in -y $PACKAGES
@@ -86,17 +86,8 @@ install_zshconfig(){
     chmod +x /tmp/oh-my-zsh
 
 
-    /tmp/oh-my-zsh --keep-zshrc --unattended
+    /tmp/oh-my-zsh --keep-zshrc
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-
-
-    if ! chsh -s "$zsh"; then
-		echo_error "chsh command unsuccessful. Change your default shell manually."
-	else
-		export SHELL="$zsh"
-		echo_info "Shell successfully changed to '$zsh'."
-	fi
-
 
 }
 
