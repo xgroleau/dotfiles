@@ -1,12 +1,18 @@
 #!/bin/bash
 
-PACKAGES="curl emacs git zsh" #Keep it in alphabetical order
+#Keep it in alphabetical order
+PACKAGES = "emacs"
+SERVER_PACKAGES = "curl git zsh" 
+
 RED=$(printf '\033[31m')
 GREEN=$(printf '\033[32m')
 YELLOW=$(printf '\033[33m')
 BLUE=$(printf '\033[34m')
 BOLD=$(printf '\033[1m')
 RESET=$(printf '\033[m')
+
+#Flags
+HEADLESS="${HEADLESS_SERVER:-false}"
 
 #------------Help------------#
 help(){
@@ -17,8 +23,9 @@ help(){
     echo ""
 
     echo "Usage:"
-    echo "      -h to show this scree"
-    echo "      -d to debug, does not redirect stdout to /dev/null"
+    echo "      -h or --help to show this scree"
+    echo "      -s or --server for installing only server packages: zsh, curl and git"
+    echo "              or can be done having the HEADLESS_SERVER env to true since yadm does not pass arguments"
     echo ""
 }
 
@@ -96,11 +103,15 @@ exec() {
     echo_info "Installing packages (This may take a while)"
     install_packages
 
-    echo_info "Installing spacemacs"
-    install_spacemacs
+    if [[ $HEADLESS != 'true' ]] ; then
+        echo_info "Installing spacemacs"
+        install_spacemacs
 
-    echo_info "Installing rust (This may take a while)"
-    install_rustup
+        echo_info "Installing rust (This may take a while)"
+        install_rustup
+    else
+        echo_info "Rust and emacs will not be installed"
+    fi
 
     echo_info "Installing zsh"
     install_zshconfig
@@ -115,6 +126,10 @@ while (( "$#" )); do
     -h|--help)
       help
       exit 0
+      ;;
+    -s|--server)
+      HEADLESS = 'true'
+      shift
       ;;
     -*|--*=) # unsupported flags
       echo "Error: Unsupported flag $1" >&2
