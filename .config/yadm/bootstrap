@@ -98,7 +98,6 @@ install_zshconfig(){
 #------------Main------------#
 exec() {
 
-    echo "TEST: $INSTALL_GUI"
     if [[ "$INSTALL_GUI" == "true" || "$INSTALL_GUI" == "false" ]]; then
         echo_info "Installing $INSTALL_GUI packages"
     else
