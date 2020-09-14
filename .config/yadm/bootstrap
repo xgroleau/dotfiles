@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #Keep it in alphabetical order
-PACKAGES = "emacs"
-SERVER_PACKAGES = "curl git zsh" 
+GUI_PACKAGES="emacs"
+SHELL_PACKAGES="curl git zsh" 
 
 RED=$(printf '\033[31m')
 GREEN=$(printf '\033[32m')
@@ -12,20 +12,21 @@ BOLD=$(printf '\033[1m')
 RESET=$(printf '\033[m')
 
 #Flags
-HEADLESS="${HEADLESS_SERVER:-false}"
+INSTALL_GUI="${INSTALL_GUI:-none}"
+PACKAGES=""
 
 #------------Help------------#
 help(){
     echo ""
     echo "A bootstrap script for YADM, this installs all dependencies for my dotfiles"
     echo "Note that YADM should call this script automatically, no need to call it again, unless there is an update"
-    echo "This install ${PACAKGES} spacemacs rust zsh and powerlevel10k"
+    echo "This install ${GUI_PACKAGES} ${SHELL_PACKAGES} spacemacs rust and powerlevel10k"
     echo ""
 
     echo "Usage:"
     echo "      -h or --help to show this scree"
-    echo "      -s or --server for installing only server packages: zsh, curl and git"
-    echo "              or can be done having the HEADLESS_SERVER env to true since yadm does not pass arguments"
+    echo "      -i or --install 'all/shell' for installing all packages or shell only packages"
+    echo "              or can be done having the INSTALL_GUI env to true/false to install all or shell only since yadm does not pass arguments"
     echo ""
 }
 
@@ -39,10 +40,6 @@ echo_error(){
 
 #------------Package installers------------#
 apt_install(){
-    #needed to prevent tz setting to request interaction
-    #should not really happen in the real world, only happens in containers
-    export DEBIAN_FRONTEND=noninteractive
-
     echo_info "Detected Ubuntu/Debian"
 
     echo_info "Updating repo"
@@ -100,10 +97,36 @@ install_zshconfig(){
 
 #------------Main------------#
 exec() {
+
+    echo "TEST: $INSTALL_GUI"
+    if [[ "$INSTALL_GUI" == "true" || "$INSTALL_GUI" == "false" ]]; then
+        echo_info "Installing $INSTALL_GUI packages"
+    else
+        echo "${YELLOW}Only shell packages or all packages (including GUI tools) can be installed." 
+        echo "Install all packages? [Y/n]${RESET}"
+        read opt
+        case $opt in
+            y*|Y*|"") 
+                echo_info "Installing all packages";
+                INSTALL_GUI="true";;
+            n*|N*) 
+                echo_info "Installing shell packages"; 
+                INSTALL_GUI="false";;
+            *) echo_error "Invalid choice. Exiting"; exit 1 ;;
+	    esac  
+    fi
+
+    if [[ "$INSTALL_GUI" == "true" ]]; then
+        PACKAGES="$SHELL_PACKAGES $GUI_PACKAGES"
+    else
+        PACKAGES="$SHELL_PACKAGES"
+    fi
+
+
     echo_info "Installing packages (This may take a while)"
     install_packages
 
-    if [[ $HEADLESS != 'true' ]] ; then
+    if [[ "$INSTALL_GUI" == 'true' ]] ; then
         echo_info "Installing spacemacs"
         install_spacemacs
 
@@ -121,25 +144,34 @@ exec() {
 
 
 #------------Argument parsing------------#
-while (( "$#" )); do
+while [[ "$#" -gt 0 ]]; do
   case "$1" in
     -h|--help)
-      help
-      exit 0
-      ;;
-    -s|--server)
-      HEADLESS = 'true'
-      shift
-      ;;
+        help
+        exit 0
+        ;;
+    -i|--install)
+        if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
+            if [ "$2" == "all" ]; then
+                INSTALL_GUI="true"
+            elif [ "$2" == "shell" ]; then
+                INSTALL_GUI="false"
+            fi
+            shift 2
+        else
+            echo_error "Error: Argument for $1 is missing" >&2
+            exit 1
+        fi
+        ;;
     -*|--*=) # unsupported flags
-      echo "Error: Unsupported flag $1" >&2
-      exit 1
-      ;;
+        echo_error "Error: Unsupported flag $1" >&2
+        exit 1
+        ;;
     *) # preserve positional arguments
-      PARAMS="$PARAMS $1"
-      shift
-      ;;
-  esac
+        PARAMS="$PARAMS $1"
+        shift
+        ;;
+    esac
 done #set positional arguments in their proper place
 eval set -- "$PARAMS"
 
