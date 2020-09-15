@@ -133,7 +133,7 @@ exec() {
     echo_info "Installing zsh"
     install_zshconfig
 
-    exec zsh -l
+    zsh -l
 }
 
 
