@@ -113,7 +113,7 @@ export ARCHFLAGS="-arch x86_64"
 
 
 #Loading local configuration
-source ~/.zshrc.local 2> /dev/null
+[[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

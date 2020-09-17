@@ -33,7 +33,7 @@ values."
    '(
      ;;Languages layers
      (rust :variables rust-backend 'lsp)
-     (python :variables python-backed 'lsp python-lsp-server 'pyls)
+     (python :variables python-backed 'lsp python-lsp-server 'pyright)
 
      ;;Languages tooling
      ipython-notebook
