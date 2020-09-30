@@ -1,0 +1,13 @@
+[Layout]
+DisplayNames=
+LayoutList=ca
+LayoutLoopCount=-1
+Model=pc86
+Options=terminate:ctrl_alt_bksp,caps:swapescape,ctrl:menu_rctrl,shift:both_capslock
+ResetOldOptions=true
+ShowFlag=false
+ShowLabel=true
+ShowLayoutIndicator=true
+ShowSingle=false
+SwitchMode=Global
+Use=true
