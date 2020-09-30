@@ -2,7 +2,7 @@
 
 #Keep it in alphabetical order
 GUI_PACKAGES="emacs"
-SHELL_PACKAGES="curl git zsh" 
+SHELL_PACKAGES="curl git zsh neovim tmux" 
 
 RED=$(printf '\033[31m')
 GREEN=$(printf '\033[32m')
@@ -43,10 +43,10 @@ apt_install(){
     echo_info "Detected Ubuntu/Debian"
 
     echo_info "Updating repo"
-    sudo -preserve-env apt-get update
+    sudo apt-get update
 
     echo_info "Installing apps"
-    sudo -preserve-env  apt-get -y install $PACKAGES
+    sudo apt-get -y install $PACKAGES
 }
 
 zypper_install(){
@@ -59,6 +59,29 @@ zypper_install(){
     sudo zypper in -y $PACKAGES
 }
 
+dnf_install(){
+    echo_info "Detected Fedora"
+    
+    echo_info "Updating repo"
+    sudo dnf check-update
+
+    echo_info "Installing apps"
+    sudo dnf -y in $PACKAGES
+}
+
+yum_install(){
+    echo_info "Detected CentOS/RHEL"
+
+    echo_info "Updating repo"
+    sudo yum check-update
+
+    echo_info "Installing apps"
+    #Adding repo for neovim
+    sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    sudo yum -y install $PACKAGES 
+
+}
+
 install_packages(){
     #Debian, ubuntu or derivatives
     if hash 2>/dev/null apt-get ; then
@@ -66,6 +89,12 @@ install_packages(){
     #Suse or derivatives
     elif hash 2>/dev/null zypper ; then
         zypper_install
+    #Fedora/Centos8+/RHEL
+    elif hash 2>/dev/null dfn ; then
+        dnf_install
+    #CentOS7-
+    elif hash 2>/dev/null yum ; then
+        yum_install
     #Fails
     else
         echo_error "Your package manager is not supported" 
