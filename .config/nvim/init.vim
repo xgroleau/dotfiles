@@ -16,6 +16,8 @@ call plug#begin()
 	set hidden
 	set signcolumn=yes
 	set title
+	set laststatus=2
+	set t_Co=256
 	
 	"Code display
 	set display=truncate
@@ -43,6 +45,8 @@ call plug#begin()
 	"Tools
 	set shell=$SHELL
 	set wildmode=list:longest
+	set diffopt+=vertical,iwhite,internal,algorithm:patience,hiddenoff
+	if has('mouse') | set mouse=a | endif
 
 	"Indent
 	set autoindent
@@ -70,7 +74,7 @@ call plug#begin()
 call plug#end()
 
 "Theme, for whatever reason cannot be called in plug
-colorscheme nord
+colorscheme oceanic_material
 syntax on
 
 
