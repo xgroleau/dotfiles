@@ -108,7 +108,7 @@ install_spacemacs(){
     git -C ~/.emacs.d checkout develop
 }
 
-install_zshconfig(){
+install_zsh_config(){
     curl --proto '=https' --tlsv1.2 -sSfL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh > /tmp/oh-my-zsh
     chmod +x /tmp/oh-my-zsh
 
@@ -120,6 +120,9 @@ install_zshconfig(){
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+}
+install_nvim_config(){
+    curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 }
 
 #------------Main------------#
@@ -160,7 +163,10 @@ exec() {
     fi
 
     echo_info "Installing zsh"
-    install_zshconfig
+    install_zsh_config
+
+    echo_info "Installing nvim"
+    install_nvim_config
 
     zsh -l
 }
