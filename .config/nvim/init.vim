@@ -11,7 +11,7 @@ call plug#begin()
 	"Installing plugins that are not installed
 	autocmd VimEnter *
 		\  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-		\|   PlugInstall --sync | q
+		\|   PlugInstall --sync | q | source $MYVIMRC
 		\| endif
 
 
