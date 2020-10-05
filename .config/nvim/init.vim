@@ -20,6 +20,10 @@ call plug#begin()
 	Plug 'arcticicestudio/nord-vim'
 	Plug 'hardcoreplayers/oceanic-material'
 
+	"UI
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
+
 	"General UI, line number and more
 	set nu
 	set relativenumber
@@ -33,6 +37,9 @@ call plug#begin()
 	set title
 	set laststatus=2
 	set t_Co=256
+	""Airline
+	let g:airline_powerline_fonts = 1
+	let g:airline_theme='bubblegum'
 	
 	"Code display
 	set display=truncate
