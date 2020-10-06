@@ -1,15 +1,15 @@
 # Font
 font:
   normal:
-    family: SF Mono
+    family: Hack NF
     style: Regular
 
   bold:
-    family: SF Mono
+    family: Hack NF
     style: Bold
 
   italic:
-    family: SF Mono
+    family: Hack NF
     style: Italic
 
 #styling
@@ -26,9 +26,11 @@ colors:
 hide_cursor_when_typing: true
 
 #launch
+env:
+    TERM: xterm-256color
 shell:
-  program: /bin/zsh
-  args:
+    program: /bin/zsh
+    args:
     - -l
     - -c
     - "tmux attach || tmux"
