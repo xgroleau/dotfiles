@@ -1,4 +1,7 @@
 i3
 i3blocks
-nm-applet (NetworkManager-applet opensuse)
+nm-applets
+alacritty
 rofi
+dunst
+

@@ -23,7 +23,13 @@ colors:
     text:   '0xf1c1c1'
     cursor: '0xff2600'
 
-hide_cursor_when_typing: true
+#typing
+hide_cursor_when_typing: false
+
+#scrolling
+scrolling:
+  history: 10000
+  multiplier: 3
 
 #launch
 env:
