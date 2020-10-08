@@ -1,35 +1,37 @@
 # Font
 font:
-  normal:
-    family: Hack NF
-    style: Regular
+    size: 8
 
-  bold:
-    family: Hack NF
-    style: Bold
+    normal:
+        family: Hack NF
+        style: Regular
 
-  italic:
-    family: Hack NF
-    style: Italic
+    bold:
+        family: Hack NF
+        style: Bold
+
+    italic:
+        family: Hack NF
+        style: Italic
 
 #styling
 custom_cursor_colors: true
 colors:
-  primary:
-    background: '0x191919'
-    foreground: '0xeaeaea'
+    primary:
+        background: '0x191919'
+        foreground: '0xeaeaea'
 
-  cursor:
-    text:   '0xf1c1c1'
-    cursor: '0xff2600'
+    cursor:
+        text:   '0xf1c1c1'
+        cursor: '0xff2600'
 
 #typing
 hide_cursor_when_typing: false
 
 #scrolling
 scrolling:
-  history: 10000
-  multiplier: 3
+    history: 10000
+    multiplier: 3
 
 #launch
 env:
