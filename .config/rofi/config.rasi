@@ -1,10 +1,13 @@
 configuration {
-	modi: "drun,run,window,ssh";
+	modi: "drun,window,run";
 	show-icons: true;
 	sidebar-mode: true;
 	font: "Hack NF 12";
 	sort: true;
 	matching: "fuzzy";
+	display-window: "Window";
+    display-drun: "Search";
+    display-run: "Run";
 }
 
 @theme "themes/breeze-dark.rasi"
