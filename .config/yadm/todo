@@ -1,13 +1,7 @@
 #Todo
-*Add network management
-*Add automount usb
 *Add Lockscreen management
-*Add rofi
-**Add calc to rofi
+*Add calc to rofi
 *Add power menu
 *Add themeing for gtk and qt apps
 *Add clipboard management
 *Add snipping tool
-*Add notification with dunst
-*Add night color (orange filter)
-*Remove support for centos, fuck centos in particular

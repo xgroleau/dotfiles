@@ -5,3 +5,8 @@ alacritty
 rofi
 dunst
 redshift
+xrandr (arandr for config generation)
+picom
+xmodmap
+polybar
+font-awesome

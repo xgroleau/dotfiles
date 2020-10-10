@@ -166,21 +166,22 @@ default_border normal 3
 default_floating_border normal 5
 
 # bar
-bar {
-  	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+ bar {
+   	status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	
 	position top
-	colors {
-		background #002b36
-	    	separator #586e75
+ 	colors {
+ 		background #002b36
+ 	    	separator #586e75
 		#                  border             background         text
-		focused_workspace #586e75 #586e75 #ffffff #1B2B34
-		inactive_workspace #002b36 #002b36 #aea79f #D8DEE9
-		urgent_workspace #77216f #77216f #ffffff #1B2B34
-		statusline #aea79f
-		active_workspace #073642 #073642 #ffffff #1B2B34
-	}
-}
+ 		focused_workspace #586e75 #586e75 #ffffff #1B2B34
+ 		inactive_workspace #002b36 #002b36 #aea79f #D8DEE9
+ 		urgent_workspace #77216f #77216f #ffffff #1B2B34
+ 		statusline #aea79f
+ 		active_workspace #073642 #073642 #ffffff #1B2B34
+ 	}
+ }
+
 
 #Per app fix for notif, floating and others
 for_window [title="Microsoft Teams Notification"] floating enable
@@ -200,8 +201,15 @@ for_window [class="(?i)*nextcloud*"] floating disable
 for_window [class="plasmashell" window_type="notification"] floating enable, border none, move right 700px, move down 450px
 no_focus [class="plasmashell" window_type="notification"] 
 
-#exec
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# swap caps lock and escape
+exec_always --no-startup-id xmodmap -e "clear lock"
+exec_always --no-startup-id xmodmap -e "keycode 9 = Caps_Lock NoSymbol Caps_Lock"
+exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
+
+#exec at startup
 exec --no-startup-id nm-applet
-exec --no-startup-id dunst -config ~/config/dunst/dunstrc
-exec --no-startup-id redshift
+exec --no-startup-id ~/.screenlayout/screenlayout.sh
+exec --no-startup-id dunst -conf ~/.config/dunst/dunstrc
+exec --no-startup-id picom --config ~.config/picom/picom.conf
+exec --no-startup-id redshift -c ~/.config/redshift/redshift.conf
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
