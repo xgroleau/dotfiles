@@ -25,6 +25,48 @@ my $short_text;
 my $bat_number = $ENV{BAT_NUMBER} || 0;
 my $label = $ENV{LABEL} || "";
 
+my $charging_icon_100 = "";
+my $charging_icon_75_95 = "";
+my $charging_icon_50_75 = "";
+my $charging_icon_25_50 = "";
+my $charging_icon_0_25 = "";
+
+my $discharging_icon_100 = "";
+my $discharging_icon_75_95 = "";
+my $discharging_icon_50_75 = "";
+my $discharging_icon_25_50 = "";
+my $discharging_icon_0_25 = "";
+
+
+sub get_charging_icon{
+	my ($charge) = @_;
+	if ($charge < 25) {
+		return $charging_icon_0_25
+	} elsif ($charge < 50) {
+		return $charging_icon_25_50
+	}elsif ($charge < 75) {
+		return $charging_icon_50_75
+	}elsif ($charge < 95) {
+		return $charging_icon_75_95
+	}
+	
+	return $charging_icon_100
+}
+sub get_discharging_icon{
+	my ($charge) = @_;
+	if ($charge < 25) {
+		return $discharging_icon_0_25
+	} elsif ($charge < 50) {
+		return $discharging_icon_25_50
+	}elsif ($charge < 75) {
+		return $discharging_icon_50_75
+	}elsif ($charge < 95) {
+		return $discharging_icon_75_95
+	}
+	
+	return $discharging_icon_100
+}
+
 # read the first line of the "acpi" command output
 open (ACPI, "acpi -b 2>/dev/null| grep 'Battery $bat_number' |") or die;
 $acpi = <ACPI>;
@@ -41,12 +83,11 @@ elsif ($acpi !~ /: ([\w\s]+), (\d+)%/) {
 
 $status = $1;
 $percent = $2;
-$full_text = "$label$percent%";
 
 if ($status eq 'Discharging') {
-	$full_text .= ' DIS';
+	$full_text = get_discharging_icon($percent);
 } elsif ($status eq 'Charging') {
-	$full_text .= ' CHR';
+	$full_text = get_charging_icon($percent);
 } elsif ($status eq 'Unknown') {
 	open (AC_ADAPTER, "acpi -a |") or die;
 	$ac_adapt = <AC_ADAPTER>;
@@ -56,12 +97,14 @@ if ($status eq 'Discharging') {
 		$ac_adapt = $1;
 
 		if ($ac_adapt eq 'on-line') {
-			$full_text .= ' CHR';
+			$full_text = get_charging_icon($percent);
 		} elsif ($ac_adapt eq 'off-line') {
-			$full_text .= ' DIS';
+			$full_text = get_discharging_icon($percent);
 		}
 	}
 }
+
+$full_text .= " $label$percent%";
 
 $short_text = $full_text;
 
