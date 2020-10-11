@@ -8,4 +8,4 @@ configuration {
 	display-combi: "Exec";
 }
 
-@theme "themes/breeze-dark.rasi"
+@theme "themes/slate.rasi"

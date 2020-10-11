@@ -152,8 +152,6 @@ mode "resize" {
 	bindsym $mod+r mode "default"
 }
 
-
-
 # window colors
 #                       border              background         text                 indicator
 client.focused #586e75 #586e75 #fdf6e3 #268bd2
