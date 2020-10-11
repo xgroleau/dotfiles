@@ -11,6 +11,7 @@ xmodmap
 polybar
 font-awesome
 flameshot
+rofi-calc
 
 #For i3bars and rofi scripts
 acpi (acpitool)

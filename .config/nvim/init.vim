@@ -17,12 +17,16 @@ call plug#begin()
 
 	"Plugins
 	"Themes
-	Plug 'arcticicestudio/nord-vim'
+	Plug 'morhetz/gruvbox'
 	Plug 'hardcoreplayers/oceanic-material'
 
 	"UI
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
+
+	"Tools
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() }}
+	Plug 'junegunn/fzf.vim'
 
 	"General UI, line number and more
 	set nu
@@ -37,17 +41,17 @@ call plug#begin()
 	set title
 	set laststatus=2
 	set t_Co=256
+	set guifont=Hack\ NF
+
 	""Airline
 	let g:airline_powerline_fonts = 1
 	let g:airline_theme='bubblegum'
-	
+
 	"Code display
 	set display=truncate
-	set wrap
-	set wrapmargin=8
-	set linebreak "soft wrapping
 	set showbreak=↪
 	set showmatch
+	set nowrap
 
 	"Display invisible characters
 	set list
@@ -63,12 +67,22 @@ call plug#begin()
 	"Performance
 	set ttyfast
 	set updatetime=1000
+	set ttimeout
+	set ttimeoutlen=100
 	
 	"Tools
 	set shell=$SHELL
 	set wildmode=list:longest
 	set diffopt+=vertical,iwhite,internal,algorithm:patience,hiddenoff
 	if has('mouse') | set mouse=a | endif
+	set backspace=indent,eol,start
+	set shell=/bin/zsh
+	set wildchar=<TAB>
+	set wildmenu
+	set undofile
+	set backupdir=$HOME/.local/share/nvim/backup
+	set directory=$HOME/.local/share/nvim/swap
+	set undodir=$HOME/.local/share/nvim/undo
 
 	"Indent
 	set autoindent
@@ -77,27 +91,43 @@ call plug#begin()
 	set softtabstop=4
 	set shiftwidth=4
 	set shiftround
+
+	"Navigation
+	set nostartofline
+
+	"Windows
+	set splitbelow
+	set splitright
 	
 	"Searching
 	set smartcase
-	set incsearch
 	set ignorecase
+	set incsearch
 	set hlsearch
 	set nolazyredraw
-	
+
+	"Other
 	set noerrorbells
-	set undofile
+	set visualbell
 	set scrolloff=8
 	set history=200
-	
-	set ttimeout
-	set ttimeoutlen=100
+
+	"Mapping
+	let mapleader=" "
+	nnoremap <SPACE> <Nop>
+
+	nmap <leader>f :Files!<CR>
+	nmap <leader>c :Commands<CR>
+	nmap <leader>w :w<CR>
+	nmap <leader>q :q<CR>
+	nmap <leader>d :w !diff % -<CR>
+
 
 call plug#end()
 
 "Theme, for whatever reason cannot be called in plug
 set background=dark
-colorscheme oceanic_material
+colorscheme gruvbox
 syntax on
 
 

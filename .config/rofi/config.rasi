@@ -1,11 +1,12 @@
 configuration {
-	combi-modi: "drun,window,run";
-	modi: "combi";
+	modi: "drun";
 	show-icons: true;
 	font: "Hack NF 12";
 	sort: true;
 	matching: "fuzzy";
-	display-combi: "Exec";
+	display-drun: "Exec";
+	display-calc: "Calc";
+	display-window: "Window";
 }
 
 @theme "themes/slate.rasi"
