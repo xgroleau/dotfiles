@@ -33,6 +33,9 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 bindsym $mod+space exec rofi -show
 
+#start snipping tool
+bindsym $mod+Shift+s exec flameshot gui
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -170,7 +173,7 @@ default_floating_border normal 5
 	position top
  	colors {
  		background #002b36
- 	    	separator #586e75
+ 	    separator #586e75
 		#                  border             background         text
  		focused_workspace #586e75 #586e75 #ffffff #1B2B34
  		inactive_workspace #002b36 #002b36 #aea79f #D8DEE9
