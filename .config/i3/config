@@ -10,6 +10,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $alt Mod1
 
 font pango:Hack NF 10
 #font pango:DejaVu Sans Mono 8
@@ -129,6 +130,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+$alt+l exec $HOME/.config/i3scripts/lock
 
 
 # resize window (you can also use the mouse for that)
@@ -170,8 +172,8 @@ default_floating_border normal 5
 
 # bar
  bar {
-   	status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	tray_output non
+   	status_command i3blocks -c ~/.config/i3blocks/config
+	tray_output none
 	
 	position top
  	colors {

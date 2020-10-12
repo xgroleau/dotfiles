@@ -31,32 +31,32 @@ separator_block_width=15
 
 [volume]
 label=墳 
-command=$HOME/.config/i3/scripts/volume
+command=$HOME/.config/i3scripts/volume
 interval=5
 signal=10
 
 [memory]
 label= 
-command=$HOME/.config/i3/scripts/memory
+command=$HOME/.config/i3scripts/memory
 interval=60
 
 [disk-home]
 label= 
-command=$HOME/.config/i3/scripts/disk
+command=$HOME/.config/i3scripts/disk
 interval=600
 
 [cpu]
 label= 
-command=$HOME/.config/i3/scripts/cpu_usage
+command=$HOME/.config/i3scripts/cpu_usage
 interval=10
 
 [battery]
-command=$HOME/.config/i3/scripts/battery
+command=$HOME/.config/i3scripts/battery
 interval=30
 
 [network]
 label= 
-command=$HOME/.config/i3/scripts/iface
+command=$HOME/.config/i3scripts/iface
 interval=30
 
 [poweroff]
@@ -69,13 +69,8 @@ interval=10
 
 [shutdown_menu]
 full_text=⏻ 
-command=$HOME/.config/i3/scripts/power_menu
-#FG_COLOR=#bbbbbb
-#BG_COLOR=#111111
-#HLFG_COLOR=#111111
-#HLBG_COLOR=#bbbbbb
-#BORDER_COLOR=#222222
+command=$HOME/.config/i3scripts/power_menu
 ROFI_TEXT=Menu:
 ROFI_OPTIONS=-width 11 -location 3 -hide-scrollbar -bw 2
 LAUNCHER=rofi
-#LOCKSCRIPT=i3lock --color=${BG_COLOR#"#"}
+LOCKSCRIPT=$HOME/.config/i3scripts/lock

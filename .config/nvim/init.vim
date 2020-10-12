@@ -16,19 +16,19 @@ call plug#begin()
 
 
 	"Plugins
-	"Themes
+	"" Themes
 	Plug 'morhetz/gruvbox'
 	Plug 'hardcoreplayers/oceanic-material'
 
-	"UI
+	"" UI
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 
-	"Tools
+	"" Tools
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() }}
 	Plug 'junegunn/fzf.vim'
 
-	"General UI, line number and more
+	" General UI, line number and more
 	set nu
 	set relativenumber
 	set ruler
@@ -43,34 +43,34 @@ call plug#begin()
 	set t_Co=256
 	set guifont=Hack\ NF
 
-	""Airline
+	"" Airline
 	let g:airline_powerline_fonts = 1
 	let g:airline_theme='bubblegum'
 
-	"Code display
+	" Code display
 	set display=truncate
 	set showbreak=↪
 	set showmatch
 	set nowrap
 
-	"Display invisible characters
+	" Display invisible characters
 	set list
 	set listchars=tab:→\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 
-	"Code folding
+	" Code folding
 	set foldmethod=syntax
 	set foldlevelstart=99
 	set foldnestmax=10
 	set nofoldenable
 	set foldlevel=1
 
-	"Performance
+	" Performance
 	set ttyfast
 	set updatetime=1000
 	set ttimeout
 	set ttimeoutlen=100
 	
-	"Tools
+	" Tools
 	set shell=$SHELL
 	set wildmode=list:longest
 	set diffopt+=vertical,iwhite,internal,algorithm:patience,hiddenoff
@@ -79,12 +79,10 @@ call plug#begin()
 	set shell=/bin/zsh
 	set wildchar=<TAB>
 	set wildmenu
+	set clipboard^=unnamed,unnamedplus
 	set undofile
-	set backupdir=$HOME/.local/share/nvim/backup
-	set directory=$HOME/.local/share/nvim/swap
-	set undodir=$HOME/.local/share/nvim/undo
 
-	"Indent
+	" Indent
 	set autoindent
 	set smarttab
 	set tabstop=4
@@ -92,27 +90,28 @@ call plug#begin()
 	set shiftwidth=4
 	set shiftround
 
-	"Navigation
+	" Navigation
 	set nostartofline
 
-	"Windows
+	" Windows
 	set splitbelow
 	set splitright
 	
-	"Searching
+	" Searching
 	set smartcase
 	set ignorecase
 	set incsearch
 	set hlsearch
 	set nolazyredraw
 
-	"Other
+	" Other
 	set noerrorbells
 	set visualbell
 	set scrolloff=8
 	set history=200
 
-	"Mapping
+	" Mapping
+	"" Leader
 	let mapleader=" "
 	nnoremap <SPACE> <Nop>
 
@@ -121,6 +120,23 @@ call plug#begin()
 	nmap <leader>w :w<CR>
 	nmap <leader>q :q<CR>
 	nmap <leader>d :w !diff % -<CR>
+
+	"" Movement in insert mode (alt)
+	inoremap <M-h> <Left>
+	inoremap <M-j> <Down>
+	inoremap <M-k> <Up>
+	inoremap <M-l> <Right>
+
+	"" Move by visual lines not by file lines
+	nnoremap <silent> k gk
+	nnoremap <silent> j gj
+
+	"" Keep selection when indenting/outdenting
+	vnoremap < <gv
+	vnoremap > >gv
+
+	"" Yank to the end
+	nnoremap Y y$
 
 
 call plug#end()
