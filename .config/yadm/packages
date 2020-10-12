@@ -12,6 +12,9 @@ polybar
 font-awesome
 flameshot
 rofi-calc
+playerctl
+brightnessctl
+
 
 #For i3bars and rofi scripts
 acpi (acpitool)
