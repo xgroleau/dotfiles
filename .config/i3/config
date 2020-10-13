@@ -11,6 +11,9 @@
 
 set $mod Mod4
 set $alt Mod1
+set $show_tray Mod1+Mod4
+
+set $transparent #00000001
 
 font pango:Hack NF 10
 #font pango:DejaVu Sans Mono 8
@@ -198,6 +201,21 @@ default_floating_border normal 5
  	}
  }
 
+ bar {
+	id bar-tray
+	i3bar_command i3bar --transparency
+	colors {
+				background $transparent
+			}
+	position bottom
+	tray_padding 0
+	tray_output	primary
+	workspace_buttons no
+	mode hide
+	hidden_state hide
+	modifier $show_tray
+}
+
 
 #Per app fix for notif, floating and others
 for_window [title="Microsoft Teams Notification"] floating enable
@@ -223,7 +241,7 @@ exec_always --no-startup-id xmodmap -e "keycode 9 = Caps_Lock NoSymbol Caps_Lock
 exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
 
 #exec at startup
-exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet &>> /tmp/i3_nm_applet_log
 exec --no-startup-id $HOME/.screenlayout/screenlayout.sh
 exec --no-startup-id dunst -conf $HOME/.config/dunst/dunstrc
 exec --no-startup-id feh --bg-fill $HOME/.config/i3/wallpaper.jpg
