@@ -44,10 +44,10 @@ bindsym $mod+Return exec alacritty
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
 bindsym $mod+space exec rofi -show
 bindsym $mod+w exec --no-startup-id rofi -show window -modi window 
-bindsym $mod+c exec --no-startup-id rofi -show calc -modi calc -no-show-match -no-sor
+bindsym $mod+c exec --no-startup-id $HOME/.config/rofi/scripts/calc
+bindsym $mod+semicolon exec --no-startup-id $HOME/.config/rofi/scripts/emoji_selector
 
 #start snipping tool
 bindsym $mod+Shift+s exec flameshot gui

@@ -11,7 +11,6 @@ xmodmap
 polybar
 font-awesome
 flameshot
-rofi-calc
 playerctl
 brightnessctl
 
@@ -19,3 +18,6 @@ brightnessctl
 #For i3bars and rofi scripts
 acpi (acpitool)
 xclip
+xdotool
+xmllint
+bc
