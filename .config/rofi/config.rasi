@@ -1,7 +1,7 @@
 configuration {
 	modi: "drun";
 	show-icons: true;
-	font: "Hack NF 12";
+	font: "FiraCode NF 12";
 	sort: true;
 	matching: "fuzzy";
 	display-drun: "Exec";

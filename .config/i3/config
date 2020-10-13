@@ -15,7 +15,7 @@ set $show_tray Mod1+Mod4
 
 set $transparent #00000001
 
-font pango:Hack NF 10
+font pango:FiraCode NF 10
 #font pango:DejaVu Sans Mono 8
 
 # Use pactl to adjust volume in PulseAudio.
