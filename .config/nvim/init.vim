@@ -121,11 +121,6 @@ call plug#begin()
 	nmap <leader>q :q<CR>
 	nmap <leader>d :w !diff % -<CR>
 
-	"" Movement in insert mode (alt)
-	inoremap <M-h> <Left>
-	inoremap <M-j> <Down>
-	inoremap <M-k> <Up>
-	inoremap <M-l> <Right>
 
 	"" Move by visual lines not by file lines
 	nnoremap <silent> k gk
@@ -138,6 +133,23 @@ call plug#begin()
 	"" Yank to the end
 	nnoremap Y y$
 
+	"" Navigation
+	nnoremap <C-k> <C-u>
+	nnoremap <C-j> <C-d>
+
+	""" Movement in insert mode (alt)
+	inoremap <M-h> <Left>
+	inoremap <M-j> <Down>
+	inoremap <M-k> <Up>
+	inoremap <M-l> <Right>
+
+	""" Recenter
+	nnoremap }   }zz
+	nnoremap {   {zz
+	nnoremap ]]  ]]zz
+	nnoremap [[  [[zz
+	nnoremap []  []zz
+	nnoremap ][  ][zz
 
 call plug#end()
 
