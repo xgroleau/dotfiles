@@ -115,11 +115,11 @@ call plug#begin()
 	let mapleader=" "
 	nnoremap <SPACE> <Nop>
 
-	nmap <leader>f :Files!<CR>
+	nmap <leader>ff :Files!<CR>
+	nmap <leader>fs :w<CR>
+	nmap <leader>fd :w !diff % -<CR>
 	nmap <leader>c :Commands<CR>
-	nmap <leader>w :w<CR>
 	nmap <leader>q :q<CR>
-	nmap <leader>d :w !diff % -<CR>
 
 
 	"" Move by visual lines not by file lines

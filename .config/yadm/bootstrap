@@ -3,7 +3,7 @@
 #Keep it in alphabetical order
 DE_PACKAGES="i3 i3-blocks nm-applets"
 GUI_PACKAGES="emacs"
-SHELL_PACKAGES="curl git zsh neovim tmux" 
+SHELL_PACKAGES="curl git zsh neovim tmux ripgrep fzf" 
 
 RED=$(printf '\033[31m')
 GREEN=$(printf '\033[32m')
@@ -21,7 +21,7 @@ help(){
     echo ""
     echo "A bootstrap script for YADM, this installs all dependencies for my dotfiles"
     echo "Note that YADM should call this script automatically, no need to call it again, unless there is an update"
-    echo "This install ${GUI_PACKAGES} ${SHELL_PACKAGES} spacemacs and powerlevel10k"
+    echo "This install ${GUI_PACKAGES} ${SHELL_PACKAGES} doom-emacs and powerlevel10k"
     echo ""
 
     echo "Usage:"
@@ -89,9 +89,10 @@ install_packages(){
 }
 
 #------------Config installers------------#
-install_spacemacs(){
-    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-    git -C ~/.emacs.d checkout develop
+install_doom_emacs(){
+    git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
+    git -C ~/.emacs.d checkout develop #Just in case master becomes the default
+    ~/.emacs.d/bin/doom install
 }
 
 install_zsh_config(){
@@ -143,8 +144,8 @@ exec() {
     install_packages
 
     if [[ "$INSTALL_GUI" == 'true' ]] ; then
-        echo_info "Installing spacemacs"
-        install_spacemacs
+        echo_info "Installing doom emacs"
+        install_doom_emacs
     else
         echo_info "Emacs will not be installed"
     fi
