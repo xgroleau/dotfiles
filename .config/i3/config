@@ -55,8 +55,8 @@ bindsym $mod+semicolon exec --no-startup-id $HOME/.config/rofi/scripts/emoji_sel
 bindsym $mod+Shift+s exec flameshot gui
 
 # border on, see where focus is
-bindsym $mod+period exec i3-msg border pixel 3
-bindsym --release $mod+period exec i3-msg border pixel 0
+bindsym $mod+period exec $focus_on
+bindsym --release $mod+period exec $focus_off
 
 # change focus
 bindsym $mod+h exec $focus_on; focus left

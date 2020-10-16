@@ -24,29 +24,9 @@ plugins=(
 	docker-compose
 )
 
+source ~/.aliases
+
 source $ZSH/oh-my-zsh.sh
-
-#-- Compilation flags --
-export ARCHFLAGS="-arch x86_64"
-
-#-- Aliases --
-# Note that oh-my-zsh provides a lot of good aliases
-
-# helpers
-alias grep="grep --color=auto"
-alias df="df -h"
-alias du="du -h"
-
-# vim
-alias vim="nvim"
-alias vi="nvim"
-
-# tmux aliases
-alias ta="tmux attach"
-alias tls="tmux ls"
-alias tat="tmux attach -t"
-alias tns="tmux new-session -s"
-
 
 #-- Local configuration --
 #Loading local configuration

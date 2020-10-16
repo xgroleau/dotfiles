@@ -20,5 +20,8 @@ export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
 export LESS_TERMCAP_mr=$(tput rev)
 export LESS_TERMCAP_mh=$(tput dim)
 
+# Emacs path
+export PATH="${PATH}:${HOME}/.emacs.d/bin"
+
 #Loading local configuration
 [[ ! -f ~/.zshenv.local ]] || source ~/.zshenv.local
