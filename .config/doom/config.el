@@ -1,5 +1,5 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
-
+;;;
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
@@ -8,8 +8,8 @@
 
 
 ;; Font settings
-(setq doom-font (font-spec :family "FiraCode NF" :size 16)
-      doom-big-font (font-spec :family "FiraCode NF" :size 22))
+(setq doom-font (font-spec :family "FiraCode NF" :size 14)
+      doom-big-font (font-spec :family "FiraCode NF" :size 20))
 
 ;; Theme
 (setq doom-theme 'doom-gruvbox)
@@ -43,7 +43,16 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-
 (map!
- :n "{" #'evil-scroll-line-to-center      #'evil-backward-paragraph
- :n "}" #'evil-scroll-line-to-center      #'evil-forward-paragraph)
+
+ ;;Navigation recenter
+ :n "}" (cmd! (evil-forward-paragraph 1) (evil-scroll-line-to-center nil))
+ :n "{" (cmd! (evil-backward-paragraph 1) (evil-scroll-line-to-center nil))
+ :n "]]" (cmd! (evil-forward-section-begin 1) (evil-scroll-line-to-center nil))
+ :n "[[" (cmd! (evil-backward-section-begin 1) (evil-scroll-line-to-center nil))
+ :n "[]" (cmd! (evil-backward-section-end 1) (evil-scroll-line-to-center nil))
+ :n "][" (cmd! (evil-forward-section-end 1) (evil-scroll-line-to-center nil))
+
+ ;;Scroll
+ :n "C-j" #'evil-scroll-down
+ :n "C-k" #'evil-scroll-up)
