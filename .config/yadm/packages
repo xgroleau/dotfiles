@@ -20,8 +20,9 @@ acpi (acpitool)
 xclip
 xdotool
 xmllint
+scrot
+convert
 bc
-
 
 #Doom emacs dependencies
 cmake

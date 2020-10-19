@@ -92,7 +92,7 @@ install_packages(){
 install_doom_emacs(){
     git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
     git -C ~/.emacs.d checkout develop #Just in case master becomes the default
-    ~/.emacs.d/bin/doom install
+    ~/.emacs.d/bin/doom --yes install
 }
 
 install_zsh_config(){
