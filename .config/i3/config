@@ -198,7 +198,7 @@ client.urgent #dc322f #dc322f #fdf6e3 #dc322f
 
 # bar
  bar {
-   	status_command i3blocks -c ~/.config/i3blocks/config
+status_command i3blocks -c ~/.config/i3blocks/config
 	tray_output none
 	
 	position top
@@ -230,6 +230,9 @@ client.urgent #dc322f #dc322f #fdf6e3 #dc322f
 }
 
 
+# Remove border
+default_border none
+default_floating_border none
 #Per app fix for notif, floating and others
 for_window [title="Microsoft Teams Notification"] floating enable
 no_focus [title="Microsoft Teams Notification"]
@@ -254,6 +257,7 @@ exec_always --no-startup-id xmodmap -e "keycode 9 = Caps_Lock NoSymbol Caps_Lock
 exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
 
 #exec at startup
+exec --no-startup-id unclutter
 exec --no-startup-id nm-applet &>> /tmp/i3_nm_applet_log
 exec --no-startup-id $HOME/.screenlayout/screenlayout.sh
 exec --no-startup-id dunst -conf $HOME/.config/dunst/dunstrc

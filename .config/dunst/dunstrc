@@ -1,7 +1,7 @@
 [global]
     monitor = 0
     follow = mouse
-    geometry = "320x5-15+15"
+    geometry = "320x5-15+25"
     indicate_hidden = yes
     shrink = no
     transparency = 0
@@ -55,7 +55,7 @@
 [urgency_normal]
     background = "#232323"
     foreground = "#a8a8a8"
-    timeout = 10
+    timeout = 5
 
 [urgency_critical]
     background = "#d64e4e"

@@ -24,6 +24,7 @@ scrot
 convert
 bc
 
-#Doom emacs dependencies
-cmake
-libtools
+# General faster dev tools
+rigpgrep
+fd
+fzf

@@ -16,18 +16,20 @@ HIST_STAMPS="dd/mm/yyyy"
 
 
 #-- Oh-my-zsh --
+
 plugins=(
 	git
 	zsh-syntax-highlighting
 	zsh-autosuggestions
+	zsh-completions
 	docker
 	docker-compose
 )
-
-source ~/.aliases
+# Start plugins
+autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
-
+source ~/.aliases
 #-- Local configuration --
 #Loading local configuration
 [[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
