@@ -1,1 +1,1 @@
-init.vim
+/home/xavier/.config/nvim/init.vim
