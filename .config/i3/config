@@ -49,6 +49,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+space exec rofi -show
 bindsym $mod+w exec --no-startup-id rofi -show window -modi window 
 bindsym $mod+c exec --no-startup-id $HOME/.config/rofi/scripts/calc
+bindsym $mod+p exec --no-startup-id $HOME/.config/i3scripts/power_menu
 bindsym $mod+semicolon exec --no-startup-id $HOME/.config/rofi/scripts/emoji_selector
 
 #start snipping tool
@@ -165,27 +166,27 @@ bindsym $mod+$alt+l exec $HOME/.config/i3scripts/lock
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
 mode "resize" {
-	# These bindings trigger as soon as you enter the resize mode
+    # These bindings trigger as soon as you enter the resize mode
 
-	# Pressing left will shrink the window’s width.
-	# Pressing right will grow the window’s width.
-	# Pressing up will shrink the window’s height.
-	# Pressing down will grow the window’s height.
-	bindsym h resize shrink width 10 px or 10 ppt
-	bindsym j resize grow height 10 px or 10 ppt
-	bindsym k resize shrink height 10 px or 10 ppt
-	bindsym l resize grow width 10 px or 10 ppt
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
 
-	# same bindings, but for the arrow keys
-	bindsym Left resize shrink width 10 px or 10 ppt
-	bindsym Down resize grow height 10 px or 10 ppt
-	bindsym Up resize shrink height 10 px or 10 ppt
-	bindsym Right resize grow width 10 px or 10 ppt
+    # same bindings, but for the arrow
+    bindsym Left resize shrink width 10 px or 10
+    bindsym Down resize grow height 10 px or 10
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
 
-	# back to normal: Enter or Escape or $mod+r
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
-	bindsym $mod+r mode "default"
+    # back to normal: Enter or Escape or $mod+
+    bindsym Return mode "default
+    bindsym Escape mode "default
+    bindsym $mod+r mode "default"
 }
 
 # window colors
@@ -197,36 +198,36 @@ client.urgent #dc322f #dc322f #fdf6e3 #dc322f
 
 
 # bar
- bar {
-status_command i3blocks -c ~/.config/i3blocks/config
-	tray_output none
-	
-	position top
- 	colors {
- 		background #002b36
- 	    separator #586e75
-		#                  border             background         text
- 		focused_workspace #586e75 #586e75 #ffffff #1B2B34
- 		inactive_workspace #002b36 #002b36 #aea79f #D8DEE9
- 		urgent_workspace #77216f #77216f #ffffff #1B2B34
- 		statusline #aea79f
- 		active_workspace #073642 #073642 #ffffff #1B2B34
- 	}
+bar {
+    status_command i3blocks -c ~/.config/i3blocks/config
+    tray_output none
+
+    position top
+    colors {
+        background #002b36
+        separator #586e75
+        #                  border             background         text
+        focused_workspace #586e75 #586e75 #ffffff #1B2B34
+        inactive_workspace #002b36 #002b36 #aea79f #D8DEE9
+        urgent_workspace #77216f #77216f #ffffff #1B2B34
+        statusline #aea79f
+        active_workspace #073642 #073642 #ffffff #1B2B34
+    }
  }
 
- bar {
-	id bar-tray
-	i3bar_command i3bar --transparency
-	colors {
-				background $transparent
-			}
-	position bottom
-	tray_padding 0
-	tray_output	primary
-	workspace_buttons no
-	mode hide
-	hidden_state hide
-	modifier $show_tray
+bar {
+    id bar-tray
+    i3bar_command i3bar --transparency
+    colors {
+        background $transparent
+    }
+    position bottom
+    tray_padding 0
+    tray_output primary
+    workspace_buttons no
+    mode hide
+    hidden_state hide
+    modifier $show_tray
 }
 
 
