@@ -1,10 +1,19 @@
 "Installing vimplug if not existing
-let autoload_plug_path = stdpath('data') . '/site/autoload/plug.vim'
-if !filereadable(autoload_plug_path)
-	echo "Inside if"
-    silent execute '!curl -fLo ' . autoload_plug_path . ' --create-dirs "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"'
+"" Nvim
+if has('nvim')
+	let autoload_plug_path = stdpath('data') . '/site/autoload/plug.vim'
+	if !filereadable(autoload_plug_path)
+		echo "Inside if"
+		silent execute '!curl -fLo ' . autoload_plug_path . ' --create-dirs "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"'
+	endif
+	unlet autoload_plug_path
+"" Vim
+else
+	if empty(glob('~/.vim/autoload/plug.vim'))
+		silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	endif
 endif
-unlet autoload_plug_path
+
 
 "Settings
 call plug#begin()
@@ -73,7 +82,6 @@ call plug#begin()
 	" Tools
 	set shell=$SHELL
 	set wildmode=list:longest
-	set diffopt+=vertical,iwhite,internal,algorithm:patience,hiddenoff
 	if has('mouse') | set mouse=a | endif
 	set backspace=indent,eol,start
 	set shell=/bin/zsh
@@ -81,6 +89,7 @@ call plug#begin()
 	set wildmenu
 	set clipboard^=unnamed,unnamedplus
 	set undofile
+	""set diffopt+=vertical,iwhite,internal,algorithm:patience,hiddenoff
 
 	" Indent
 	set autoindent
