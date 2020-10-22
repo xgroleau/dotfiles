@@ -26,8 +26,6 @@
 #                            BEGIN CONFIG                             #
 #######################################################################
 
-# Use a custom lock script
-#LOCKSCRIPT="i3lock-extra -m pixelize"
 
 # Colors: FG (foreground), BG (background), HL (highlighted)
 FG_COLOR="${FG_COLOR:-#bbbbbb}"
@@ -52,6 +50,9 @@ ZENITY_OPTIONS=(${ZENITY_OPTIONS:---column= --hide-header})
 # Whether to ask for user's confirmation
 enable_confirmation=${ENABLE_CONFIRMATIONS:-false}
 
+# Lock script
+lock_script="${LOCKSCRIPT:-$HOME/.config/i3scripts/lock}"
+
 # Preferred launcher if both are available
 preferred_launcher="${LAUNCHER:-rofi}"
 
@@ -60,6 +61,7 @@ where:
     -h  show this help text
     -c  ask for user confirmation
     -p  preferred launcher (rofi or zenity)
+	-l  lock screen script path
 This script depends on:
   - systemd,
   - i3,
@@ -81,7 +83,7 @@ function check_launcher() {
 }
 
 # Parse CLI arguments
-while getopts "hcp:" option; do
+while getopts "hcp:l:" option; do
   case "${option}" in
     h) echo "${usage}"
        exit 0
@@ -90,6 +92,8 @@ while getopts "hcp:" option; do
        ;;
     p) preferred_launcher="${OPTARG}"
        check_launcher "${preferred_launcher}"
+       ;;
+    l) lock_script="${OPTARG}"
        ;;
     *) exit 1
        ;;
@@ -117,7 +121,7 @@ menu=(
   [Hibernate]="systemctl hibernate"
   [Suspend]="systemctl suspend"
   [Halt]="systemctl halt"
-  [Lock]="${LOCKSCRIPT:-i3lock --color=${BG_COLOR#"#"}}"
+  [Lock]="$lock_script"
   [Logout]="i3-msg exit"
   [Cancel]=""
 )

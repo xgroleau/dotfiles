@@ -59,10 +59,6 @@ label=
 command=$HOME/.config/i3scripts/iface
 interval=30
 
-[poweroff]
-label=
-command=i3-msg mode " Lock     Exit     Reboot     Poweroff"
-
 [time]
 command=echo " $(date '+%Y-%m-%d %H:%M')"
 interval=10
@@ -70,7 +66,3 @@ interval=10
 [shutdown_menu]
 full_text=⏻ 
 command=$HOME/.config/i3scripts/power_menu
-ROFI_TEXT=Menu:
-ROFI_OPTIONS=-width 11 -location 3 -hide-scrollbar -bw 2
-LAUNCHER=rofi
-LOCKSCRIPT=$HOME/.config/i3scripts/lock
