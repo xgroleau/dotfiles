@@ -193,9 +193,9 @@ mode "resize" {
 #
 set $text_active	#f8f4e8
 set $text_inactive	#aea79f
-set $focus			#132648
+set $focus			#314366
 set $urgent			#771f3f
-set $active			#1e293e
+set $active			#24324b
 set $inactive		#282c33
 
 #						border		background	text
