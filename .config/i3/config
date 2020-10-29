@@ -191,18 +191,18 @@ mode "resize" {
 
 # window colors
 #
-set $text_active	#f8f4e8
-set $text_inactive	#aea79f
-set $focus			#314366
-set $urgent			#771f3f
-set $active			#24324b
-set $inactive		#282c33
+set $text_active    #f8f4e8
+set $text_inactive  #aea79f
+set $focus          #516fa8
+set $urgent         #771f3f
+set $active         #314366
+set $inactive       #282c33
 
-#						border		background	text
-client.focused			$focus		$focus		$text_active
-client.focused_inactive	$active		$active		$text_inactive
-client.unfocused		$inactive	$inactive	$text_inactive
-client.urgent			$urgent		$urgent		$text_inactive
+#                       border      background  text
+client.focused          $focus      $focus      $text_active
+client.focused_inactive $active     $active     $text_inactive
+client.unfocused        $inactive   $inactive   $text_inactive
+client.urgent           $urgent     $urgent     $text_inactive
 
 
 # bar
@@ -212,15 +212,15 @@ bar {
 
     position top
     colors {
-        background	$inactive
-        separator	$text_inactive
-        statusline	$text_inactive
+        background  $inactive
+        separator   $text_inactive
+        statusline  $text_inactive
 
-        #					border		background	text
-        focused_workspace	$focus		$focus		$text_active
-        active_workspace	$active		$active		$text_inactive
-        inactive_workspace	$inactive	$inactive	$text_inactive
-        urgent_workspace	$urgent		$urgent		$text_inactive
+        #                   border      background  text
+        focused_workspace   $focus      $focus      $text_active
+        active_workspace    $active     $active     $text_inactive
+        inactive_workspace  $inactive   $inactive   $text_inactive
+        urgent_workspace    $urgent     $urgent     $text_inactive
     }
  }
 

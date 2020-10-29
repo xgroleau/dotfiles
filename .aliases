@@ -1,13 +1,12 @@
-# Note that oh-my-zsh provides a lot of good aliases
+# Note that oh-my-zsh already provides a lot of good aliases
 
 # helpers
 alias grep="grep --color=auto"
 alias df="df -h"
 alias du="du -h"
 
-# vim
-alias vim="nvim"
-alias vi="nvim"
+# nvim
+alias v="nvim"
 
 # tmux aliases
 alias ta="tmux attach"
@@ -16,5 +15,5 @@ alias tat="tmux attach -t"
 alias tns="tmux new-session -s"
 
 # emacs aliases
-alias emc="emacsclient -nw -a 'emacs --daemon'"
-alias em="emacsclient -c -a 'emacs --daemon'"
+alias em="emacsclient -nw -a 'emacs --daemon'"
+alias emg="emacsclient -c -a 'emacs --daemon'"

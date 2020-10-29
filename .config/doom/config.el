@@ -53,5 +53,11 @@
  :n "][" (cmd! (evil-forward-section-end 1) (evil-scroll-line-to-center nil))
 
  ;;Scroll
- :n "C-j" #'evil-scroll-down
- :n "C-k" #'evil-scroll-up)
+ :n "M-j" #'evil-scroll-down
+ :n "M-k" #'evil-scroll-up
+
+ ;;Window
+ :n "C-h" #'evil-window-left
+ :n "C-j" #'evil-window-down
+ :n "C-k" #'evil-window-up
+ :n "C-l" #'evil-window-right)
