@@ -14,7 +14,8 @@ BOLD=$(printf '\033[1m')
 RESET=$(printf '\033[m')
 
 #Flags
-INSTALL_DE="${INSTALL_DE:-none}"
+INSTALL_DE="${INSTALL_DE:-false}"
+PACKAGES_ONLY="${PACAKGES_ONLY:-false}"
 
 #------------Help------------#
 help(){
@@ -31,6 +32,8 @@ help(){
     echo "      -h or --help to show this screen"
     echo "      -i or --install 'all/main' for installing all packages or main only packages"
     echo "              or can be done having the INSTALL_DE env to true/false to install all or shell only since yadm does not pass arguments"
+    echo "      -p or --packages will only install packages and not clone git deps. Usefull to update dependencies"
+    echo "              or can be done having PACKAGES_ONLY env to true/false"
     echo ""
 }
 
@@ -108,11 +111,12 @@ install_zsh_config(){
 #------------Main------------#
 exec() {
 
-    if [[ "$INSTALL_DE" == "true" || "$INSTALL_DE" == "false" ]]; then
+    echo "PA VALUE: $PACKAGES_ONLY"
+    if [[ "$INSTALL_DE" == "true" ]]; then
         echo_info "Installing desktop environment packages"
     else
         echo "${YELLOW}Only main packages or all packages (including DE tools) can be installed."
-        echo "Install all packages? [Y/n]${RESET}"
+        echo "Install all packages? [y/n]${RESET}"
         read opt
         case $opt in
             y*|Y*|"") 
@@ -128,14 +132,13 @@ exec() {
     echo_info "Installing packages (This may take a while)"
     install_packages
 
-    echo_info "Installing doom emacs"
-    install_doom_emacs
+    if [[ "$PACKAGES_ONLY" == "true" ]]; then
+        echo_info "Installing doom emacs"
+        install_doom_emacs
 
-    echo_info "Installing zsh"
-    install_zsh_config
-
-    echo_info "Installing nvim"
-    install_nvim_config
+        echo_info "Installing zsh"
+        install_zsh_config
+    fi
 
     zsh -l
 }
@@ -161,6 +164,10 @@ while [[ "$#" -gt 0 ]]; do
             echo_error "Error: Argument for $1 is missing" >&2
             exit 1
         fi
+        ;;
+    -p|--packages)
+        PACKAGES_ONLY="true"
+        shift
         ;;
     -*|--*=) # unsupported flags
         echo_error "Error: Unsupported flag $1" >&2
