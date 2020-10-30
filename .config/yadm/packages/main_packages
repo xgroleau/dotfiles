@@ -1,0 +1,12 @@
+# Main packages, required for def
+curl
+git
+zsh
+neovim
+emacs
+tmux
+
+# General faster dev tools
+ripgrep
+fd
+fzf

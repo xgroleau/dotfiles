@@ -1,0 +1,25 @@
+# Desktop enviroment
+i3
+i3blocks
+network-manager-applet
+alacritty
+rofi
+dunst
+redshift
+xrandr
+arandr
+picom
+flameshot
+playerctl
+brightnessctl
+unclutter
+xmodmap
+
+# For i3bars and rofi scripts
+acpitool
+xclip
+xdotool
+libxml2-tools
+scrot
+imagemagick
+bc
