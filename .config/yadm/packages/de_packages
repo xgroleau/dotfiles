@@ -1,6 +1,7 @@
 # Desktop enviroment
 i3
 i3blocks
+feh
 network-manager-applet
 alacritty
 rofi
@@ -19,7 +20,7 @@ xmodmap
 acpitool
 xclip
 xdotool
-libxml2-tools
+xmllint
 scrot
 imagemagick
 bc

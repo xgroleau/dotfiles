@@ -111,7 +111,6 @@ install_zsh_config(){
 #------------Main------------#
 exec() {
 
-    echo "PA VALUE: $PACKAGES_ONLY"
     if [[ "$INSTALL_DE" == "true" ]]; then
         echo_info "Installing desktop environment packages"
     else
