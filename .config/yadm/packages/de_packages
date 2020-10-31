@@ -14,7 +14,7 @@ flameshot
 playerctl
 brightnessctl
 unclutter
-xmodmap
+setxkbmap
 
 # For i3bars and rofi scripts
 acpitool
