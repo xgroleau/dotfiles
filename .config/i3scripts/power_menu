@@ -61,7 +61,7 @@ where:
     -h  show this help text
     -c  ask for user confirmation
     -p  preferred launcher (rofi or zenity)
-	-l  lock screen script path
+    -l  lock screen script path
 This script depends on:
   - systemd,
   - i3,
