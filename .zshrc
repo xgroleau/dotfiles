@@ -22,6 +22,7 @@ plugins=(
 	zsh-syntax-highlighting
 	zsh-autosuggestions
 	zsh-completions
+	vi-mode
 	docker
 	docker-compose
 )
