@@ -25,6 +25,11 @@
 
 (setq ranger-show-hidden t)
 
+;; dap settings
+(require 'dap-cpptools)
+(setq lsp-enable-dap-auto-configure nil)
+(setq dap-auto-configure-features nil)
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
