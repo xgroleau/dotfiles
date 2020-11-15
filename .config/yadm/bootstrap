@@ -99,13 +99,12 @@ install_packages(){
     fi
 }
 
-#------------Config installers------------#
 install_doom_emacs(){
-    $BOOTSTRAP_DIR/scripts/config_installers/doom.sh
+	$BOOTSTRAP_DIR/scripts/config_installers/doom.sh
 }
 
 install_zsh_config(){
-    $BOOTSTRAP_DIR/scripts/config_installers/zsh.sh
+	$BOOTSTRAP_DIR/scripts/config_installers/zsh.sh
 }
 
 #------------Main------------#
@@ -131,12 +130,12 @@ exec() {
     echo_info "Installing packages (This may take a while)"
     install_packages
 
-    if [[ "$PACKAGES_ONLY" == "true" ]]; then
+    if [[ "$PACKAGES_ONLY" != "true" ]]; then
         echo_info "Installing doom emacs"
-        install_doom_emacs
+		install_doom_emacs
 
         echo_info "Installing zsh"
-        install_zsh_config
+		install_zsh_config
     fi
 
     zsh -l
