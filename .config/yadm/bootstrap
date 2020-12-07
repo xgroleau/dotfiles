@@ -103,10 +103,6 @@ install_doom_emacs(){
 	$BOOTSTRAP_DIR/scripts/config_installers/doom.sh
 }
 
-install_zsh_config(){
-	$BOOTSTRAP_DIR/scripts/config_installers/zsh.sh
-}
-
 #------------Main------------#
 exec() {
 
@@ -133,9 +129,6 @@ exec() {
     if [[ "$PACKAGES_ONLY" != "true" ]]; then
         echo_info "Installing doom emacs"
 		install_doom_emacs
-
-        echo_info "Installing zsh"
-		install_zsh_config
     fi
 
     zsh -l

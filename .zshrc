@@ -1,11 +1,22 @@
-#-- Theme p10k --
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# -- ZGen loading --
+[ -d "$ZGEN_DIR" ] || git clone https://github.com/tarjoilija/zgen "$ZGEN_DIR"
+source $ZGEN_SOURCE
+
+if ! zgen saved; then
+	echo "Initializing zgen"
+
+	zgen load romkatv/powerlevel10k powerlevel10k
+	zgen load zsh-users/zsh-syntax-highlighting
+	zgen load zsh-users/zsh-completions
+	zgen load zsh-users/zsh-autosuggestions
+
+	zgen oh-my-zsh
+
+	[ -z "$SSH_CONNECTION" ] && zgen load zdharma/fast-syntax-highlighting
+	zgen save
 fi
 
 #-- Zsh params --
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
 CASE_SENSITIVE="false"
 
 HYPHEN_INSENSITIVE="false"
@@ -14,24 +25,10 @@ ENABLE_CORRECTION="true"
 
 HIST_STAMPS="dd/mm/yyyy"
 
-
-#-- Oh-my-zsh --
-
-plugins=(
-	git
-	zsh-syntax-highlighting
-	zsh-autosuggestions
-	zsh-completions
-	vi-mode
-	docker
-	docker-compose
-)
-# Start plugins
-autoload -U compinit && compinit
-
-source $ZSH/oh-my-zsh.sh
-source ~/.aliases
 #-- Local configuration --
+
+source ~/.aliases
+
 #Loading local configuration
 [[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
 

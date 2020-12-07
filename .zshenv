@@ -1,6 +1,3 @@
-#-- Oh-my-zsh --
-export ZSH="${HOME}/.oh-my-zsh"
-
 #-- Editor config --
 if [[ -n $SSH_CONNECTION ]]; then
     export EDITOR="vim"
@@ -20,8 +17,14 @@ export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
 export LESS_TERMCAP_mr=$(tput rev)
 export LESS_TERMCAP_mh=$(tput dim)
 
-# Emacs path
-export PATH="${PATH}:${HOME}/.emacs.d/bin"
+# Doom emacs path
+export DOOM_EMACS="${HOME}/.emacs.d"
+export DOOM_EMACS_BIN="${DOOM_EMACS}/bin"
+export PATH="${PATH}:${DOOM_EMACS}"
+
+# ZGen
+export ZGEN_DIR="${XDG_DATA_HOME:="$HOME/.local/share"}/zsh";
+export ZGEN_SOURCE="${ZGEN_DIR}/zgen.zsh";
 
 #Loading local configuration
 [[ ! -f ~/.zshenv.local ]] || source ~/.zshenv.local

@@ -3,18 +3,18 @@ set -euo pipefail
 
 
 function doom_install {
-	git clone https://github.com/hlissner/doom-emacs ${HOME}/.emacs.d
-	git -C ${HOME}/.emacs.d checkout develop #Just in case master becomes the default
-	${HOME}/.emacs.d/bin/doom --yes install
+	git clone https://github.com/hlissner/doom-emacs ${DOOM_EMACS}
+	git -C ${DOOM_EMACS} checkout develop #Just in case master becomes the default
+	${DOOM_EMACS_BIN}/doom --yes install
 }
 
 function doom_update {
-	${HOME}/.emacs.d/bin/doom upgrade
-	${HOME}/.emacs.d/bin/doom sync -u
+	${DOOM_EMACS_BIN}/doom upgrade
+	${DOOM_EMACS_BIN}/doom sync -u
 }
 
 # if already install
-if [ -d "${HOME}/.emacs.d" ]; then
+if [ -d "${DOOM_EMACS}" ]; then
 	doom_update
 else 
 	doom_install
