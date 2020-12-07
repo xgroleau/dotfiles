@@ -5,12 +5,17 @@ source $ZGEN_SOURCE
 if ! zgen saved; then
 	echo "Initializing zgen"
 
+	zgen load djui/alias-tips
+	zgen load unixorn/autoupdate-zgen
 	zgen load romkatv/powerlevel10k powerlevel10k
 	zgen load zsh-users/zsh-syntax-highlighting
 	zgen load zsh-users/zsh-completions
 	zgen load zsh-users/zsh-autosuggestions
 
 	zgen oh-my-zsh
+	zgen oh-my-zsh plugins/git
+	zgen oh-my-zsh plugins/sudo
+	zgen oh-my-zsh plugins/vi-mode
 
 	[ -z "$SSH_CONNECTION" ] && zgen load zdharma/fast-syntax-highlighting
 	zgen save

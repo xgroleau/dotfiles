@@ -17,3 +17,16 @@ alias tns="tmux new-session -s"
 # emacs aliases
 alias em="emacsclient -nw -a 'emacs --daemon'"
 alias emg="emacsclient -c -a 'emacs --daemon'"
+
+# yadm aliases
+alias ya="yadm add"
+alias yaa="yadm add -u"
+alias yb="yadm bootstrap"
+alias yc="yadm commit -v"
+alias yca="yadm commit -v -a"
+alias ycam="yadm commit -a -m"
+alias ycm="yadm commit -m"
+alias ycm="yadm commit -m"
+alias yd="yadm diff"
+alias yl="yadm pull"
+alias yp="yadm push"
