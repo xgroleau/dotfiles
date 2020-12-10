@@ -6,7 +6,16 @@ set update.nagwait 7
 set update.lastnaggedversion 1.14.0
 set update.checkintervalsecs 86400
 set theme dark
+
+" === Settings ===
 set hintdelay 100 
+set editorcmd emacsclient -c -a ''
+
+" === GUI ===
+guiset_quiet navbar autohide
+guiset_quiet tabs always
+guiset_quiet hoverlink left
+guiset_quiet statuspanel left
 
 " === Key bindings ===
 " Comment toggler for Reddit, Hacker News and Lobste.rs
@@ -15,4 +24,5 @@ bind ;c hint -Jc [class*="expand"],[class="togg"],[class="comment_folder"]
 " Make d take you to the tab you were just on 
 bind d composite tab #; tabclose #
 bind D tabclose
+bind e editor 
 

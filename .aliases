@@ -15,8 +15,8 @@ alias tat="tmux attach -t"
 alias tns="tmux new-session -s"
 
 # emacs aliases
-alias em="emacsclient -nw -a 'emacs --daemon'"
-alias emg="emacsclient -c -a 'emacs --daemon'"
+alias em="emacsclient -nw -a ''"
+alias emg="emacsclient -c -a ''"
 
 # yadm aliases
 alias ya="yadm add"
