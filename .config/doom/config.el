@@ -3,30 +3,29 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
+;; Doom settings
 (setq user-full-name "Xavier Groleau"
-      user-mail-address "xavgroleau@gmail.com")
+      user-mail-address "xavgroleau@gmail.com"
 
+      ;; Font settings
+      doom-font (font-spec :family "FiraCode NF" :size 14)
+      doom-big-font (font-spec :family "FiraCode NF" :size 20)
 
-;; Font settings
-(setq doom-font (font-spec :family "FiraCode NF" :size 14)
-      doom-big-font (font-spec :family "FiraCode NF" :size 20))
+      doom-theme 'doom-gruvbox
 
-;; Theme
-(setq doom-theme 'doom-gruvbox)
+      ;; Removes confirmation on quit
+      confirm-kill-emacs nil
 
-;; Org directory
-(setq org-directory "~/org/")
+      org-directory "~/org/"
 
-;; Line number settings
-(setq display-line-numbers-type 'relative)
+      display-line-numbers-type 'relative)
 
-;; Exit settings
-(setq confirm-kill-emacs nil)
-
+;; Modules settings
 ;; dap settings
 (require 'dap-cpptools)
-(setq lsp-enable-dap-auto-configure nil)
-(setq dap-auto-configure-features nil)
+;; removes all windows when debug starts
+(setq lsp-enable-dap-auto-configure nil
+      dap-auto-configure-features nil)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -46,7 +45,7 @@
 ;; they are implemented.
 
 
-;; Some mapping
+;; Key mapping
 ;; normal mode mapping
 (map!
 
@@ -58,11 +57,11 @@
  :n "[]" (cmd! (evil-backward-section-end 1) (evil-scroll-line-to-center nil))
  :n "][" (cmd! (evil-forward-section-end 1) (evil-scroll-line-to-center nil))
 
- ;;Scroll
+ ;; scroll
  :n "M-j" #'evil-scroll-down
  :n "M-k" #'evil-scroll-up
 
- ;;Window
+ ;; windows
  :n "C-h" #'evil-window-left
  :n "C-j" #'evil-window-down
  :n "C-k" #'evil-window-up
@@ -75,12 +74,12 @@
  :desc "Switch buffer in new window " "b W" #'+ivy/switch-buffer-other-window)
 
 
-;; splash screen
+;; The greatest splash screen of all
 (defun splash-screen-surpised-pikachu ()
   (mapc (lambda (line)
-          (insert (propertize (+doom-dashboard--center +doom-dashboard--width line)
-                              'face 'doom-dashboard-banner) " ")
-          (insert "\n"))
+                (insert (propertize (+doom-dashboard--center +doom-dashboard--width line)
+                                'face 'doom-dashboard-banner) " ")
+                (insert "\n"))
         '("Tries to use an emacs config thats not his own"
           "Doesn't know the key bindings"
           "⢀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⣠⣤⣶⣶"
