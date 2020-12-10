@@ -1,0 +1,18 @@
+" General Settings
+set configversion 2.0
+set update.lastchecktime 1607607414544
+set update.nag true
+set update.nagwait 7
+set update.lastnaggedversion 1.14.0
+set update.checkintervalsecs 86400
+set theme dark
+set hintdelay 100 
+
+" === Key bindings ===
+" Comment toggler for Reddit, Hacker News and Lobste.rs
+bind ;c hint -Jc [class*="expand"],[class="togg"],[class="comment_folder"]
+
+" Make d take you to the tab you were just on 
+bind d composite tab #; tabclose #
+bind D tabclose
+
