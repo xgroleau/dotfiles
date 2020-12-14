@@ -20,7 +20,7 @@ export LESS_TERMCAP_mh=$(tput dim)
 # Doom emacs path
 export DOOM_EMACS="${HOME}/.emacs.d"
 export DOOM_EMACS_BIN="${DOOM_EMACS}/bin"
-export PATH="${PATH}:${DOOM_EMACS}"
+export PATH="${PATH}:${DOOM_EMACS_BIN}"
 
 # ZGen
 export ZGEN_DIR="${XDG_DATA_HOME:="$HOME/.local/share"}/zsh";
