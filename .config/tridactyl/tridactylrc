@@ -16,7 +16,7 @@ set editorcmd emacsclient -c -a ''
 " === GUI ===
 set smoothscroll true
 set theme dark
-guiset_quiet navbar autohide
+guiset_quiet navbar always
 guiset_quiet tabs always
 guiset_quiet hoverlink left
 guiset_quiet statuspanel left
