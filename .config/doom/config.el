@@ -21,11 +21,15 @@
       display-line-numbers-type 'relative)
 
 ;; Modules settings
+
 ;; dap settings
 (require 'dap-cpptools)
 ;; removes all windows when debug starts
 (setq lsp-enable-dap-auto-configure nil
       dap-auto-configure-features nil)
+
+;; Modes settings
+(add-to-list 'auto-mode-alist '("\\.tpp\\'" . c++-mode))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
