@@ -4,6 +4,7 @@ git
 zsh
 neovim
 emacs
+python
 tmux
 
 # General faster dev tools
