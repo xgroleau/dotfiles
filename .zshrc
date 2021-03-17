@@ -15,7 +15,6 @@ if ! zgen saved; then
 	zgen oh-my-zsh
 	zgen oh-my-zsh plugins/git
 	zgen oh-my-zsh plugins/sudo
-	zgen oh-my-zsh plugins/vi-mode
 
 	[ -z "$SSH_CONNECTION" ] && zgen load zdharma/fast-syntax-highlighting
 	zgen save

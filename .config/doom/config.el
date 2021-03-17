@@ -18,9 +18,16 @@
 
       org-directory "~/org/"
 
-      display-line-numbers-type 'relative)
+      display-line-numbers-type 'relative
+      display-line-numbers-mode t)
+
 
 ;; Modules settings
+;; Buzz mode
+(add-to-list 'load-path "/usr/local/share/buzz/emacs")
+(use-package buzz-mode
+  :mode "\\.bbz\\'")
+
 
 ;; dap settings
 (require 'dap-cpptools)
@@ -30,6 +37,7 @@
 
 ;; Modes settings
 (add-to-list 'auto-mode-alist '("\\.tpp\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.bzz\\'" . buzz-mode))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
