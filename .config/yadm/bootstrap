@@ -105,6 +105,8 @@ install_doom_emacs(){
 
 #------------Main------------#
 exec() {
+	# Environment variable
+	source ~/.zshenv
 
     if [[ "$INSTALL_DE" == "true" ]]; then
         echo_info "Installing desktop environment packages"

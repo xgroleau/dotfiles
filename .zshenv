@@ -1,5 +1,5 @@
 #-- Editor config --
-if [[ -n $SSH_CONNECTION ]]; then
+if [[ -n ${SSH_CONNECTION-} ]]; then
     export EDITOR="vim"
 else
 	export EDITOR="nvim"
