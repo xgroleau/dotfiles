@@ -38,7 +38,3 @@ source ~/.aliases
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
-# Created by `pipx` on 2021-04-08 13:33:08
-export PATH="$PATH:/home/xgroleau/.local/bin"
