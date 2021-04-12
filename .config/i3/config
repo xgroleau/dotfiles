@@ -55,6 +55,9 @@ bindsym $mod+semicolon exec --no-startup-id $HOME/.config/rofi/scripts/emoji_sel
 #start snipping tool
 bindsym $mod+Shift+s exec flameshot gui
 
+# Doom everywhere
+bindsym $mod+Shift+d exec ~/.emacs.d/bin/doom everywhere
+
 # border on, see where focus is
 bindsym $mod+period exec $focus_on
 bindsym --release $mod+period exec $focus_off
@@ -97,7 +100,7 @@ bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+d floating toggle
+bindsym $mod+Shift+f floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+d focus mode_toggle

@@ -19,6 +19,7 @@ setxkbmap
 # For i3bars and rofi scripts
 acpitool
 xclip
+x11-tools
 xdotool
 xmllint
 scrot
