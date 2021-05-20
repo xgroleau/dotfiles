@@ -1,7 +1,7 @@
 [global]
     monitor = 0
     follow = mouse
-    geometry = "320x5-15+25"
+    geometry = "320x5-15-15"
     indicate_hidden = yes
     shrink = no
     transparency = 0
@@ -37,9 +37,9 @@
     corner_radius = 0
     ignore_dbusclose = false
     force_xinerama = false
-    mouse_left_click = do_action, close_current
-    mouse_middle_click = close_current
-    mouse_right_click = close_all
+    mouse_left_click = do_action
+    mouse_middle_click = close_all
+    mouse_right_click = close_current
 
 [shortcuts]
     close = mod1+space
@@ -50,14 +50,14 @@
 [urgency_low]
     background = "#282c33"
     foreground = "#aea79f"
-    timeout = 5
+    timeout = 3
 
 [urgency_normal]
     background = "#1e293e"
     foreground = "#aea79f"
-    timeout = 5
+    timeout = 3
 
 [urgency_critical]
     background = "#771f3f"
     foreground = "#aea79f"
-    timeout = 0
+    timeout = 5
