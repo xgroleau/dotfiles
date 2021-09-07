@@ -26,5 +26,9 @@ export PATH="${PATH}:${DOOM_EMACS_BIN}"
 export ZGEN_DIR="${XDG_DATA_HOME:="$HOME/.local/share"}/zsh";
 export ZGEN_SOURCE="${ZGEN_DIR}/zgen.zsh";
 
+# local bin
+export PATH="${PATH}:${HOME}/.local/bin"
+export PATH="${PATH}:${HOME}/bin"
+
 #Loading local configuration
 [[ ! -f ~/.zshenv.local ]] || source ~/.zshenv.local
