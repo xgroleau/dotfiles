@@ -28,6 +28,7 @@
 (use-package buzz-mode
   :mode "\\.bbz\\'")
 
+(setq buzz-indent-level 4)
 
 ;; dap settings
 (require 'dap-cpptools)
