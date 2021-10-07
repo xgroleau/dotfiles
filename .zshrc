@@ -29,11 +29,15 @@ ENABLE_CORRECTION="true"
 
 HIST_STAMPS="dd/mm/yyyy"
 
-#-- Local configuration --
-
+#-- Configuration --
+# Aliases
 source ~/.aliases
+# Functions
+fpath=(~/.zshfn "${fpath[@]}")
+autoload Uz ~/.zshfn/*(.:t)
 
-#Loading local configuration
+#-- Local configuration --
+# Loading local configuration
 [[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
