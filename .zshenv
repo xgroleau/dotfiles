@@ -32,3 +32,4 @@ export PATH="${PATH}:${HOME}/bin"
 
 #Loading local configuration
 [[ ! -f ~/.zshenv.local ]] || source ~/.zshenv.local
+
