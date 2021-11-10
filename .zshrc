@@ -1,24 +1,29 @@
-# -- ZGen loading --
-[ -d "$ZGEN_DIR" ] || git clone https://github.com/tarjoilija/zgen "$ZGEN_DIR"
-source $ZGEN_SOURCE
+# -- ZINIT loading --
+ZINIT_HOME="${ZINIT_HOME:-${ZPLG_HOME:-${ZDOTDIR:-${HOME}}/.zinit}}"
+ZINIT_BIN_DIR_NAME="${${ZINIT_BIN_DIR_NAME:-${ZPLG_BIN_DIR_NAME}}:-bin}"
 
-if ! zgen saved; then
-	echo "Initializing zgen"
-
-	zgen load djui/alias-tips
-	zgen load unixorn/autoupdate-zgen
-	zgen load romkatv/powerlevel10k powerlevel10k
-	zgen load zsh-users/zsh-syntax-highlighting
-	zgen load zsh-users/zsh-completions
-	zgen load zsh-users/zsh-autosuggestions
-
-	zgen oh-my-zsh
-	zgen oh-my-zsh plugins/git
-	zgen oh-my-zsh plugins/sudo
-
-	[ -z "$SSH_CONNECTION" ] && zgen load zsh-users/fast-syntax-highlighting
-	zgen save
+### Downloads zinit if needed
+if [[ ! -f "${ZINIT_HOME}/${ZINIT_BIN_DIR_NAME}/zinit.zsh" ]]; then
+    print -P "%F{33}▒ %F{220}Installing DHARMA Initiative Plugin Manager (zdharma/zinit)…%f"
+    command mkdir -p "${ZINIT_HOME}" && command chmod g-rwX "${ZINIT_HOME}"
+    command git clone https://github.com/zdharma-continuum/zinit "${ZINIT_HOME}/${ZINIT_BIN_DIR_NAME}" && \
+        print -P "%F{33}▒ %F{34}Installation successful.%f" || \
+        print -P "%F{160}▒ The clone has failed.%f"
 fi
+source "${ZINIT_HOME}/${ZINIT_BIN_DIR_NAME}/zinit.zsh"
+
+# Package definition
+zt(){ zinit depth'3' lucid ${1/#[0-9][a-c]/wait"${1}"} "${@:2}"; }
+zt light-mode for \
+    djui/alias-tips \
+    romkatv/powerlevel10k\
+    zsh-users/zsh-completions \
+    zsh-users/zsh-autosuggestions \
+    zdharma-continuum/fast-syntax-highlighting
+
+zinit snippet OMZL::git.zsh
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
 
 #-- Zsh params --
 CASE_SENSITIVE="false"
@@ -42,4 +47,3 @@ autoload Uz ~/.zshfn/*(.:t)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
