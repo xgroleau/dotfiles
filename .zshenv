@@ -22,10 +22,6 @@ export DOOM_EMACS="${HOME}/.emacs.d"
 export DOOM_EMACS_BIN="${DOOM_EMACS}/bin"
 export PATH="${PATH}:${DOOM_EMACS_BIN}"
 
-# ZGen
-export ZGEN_DIR="${XDG_DATA_HOME:="$HOME/.local/share"}/zsh";
-export ZGEN_SOURCE="${ZGEN_DIR}/zgen.zsh";
-
 # local bin
 export PATH="${PATH}:${HOME}/.local/bin"
 export PATH="${PATH}:${HOME}/bin"
