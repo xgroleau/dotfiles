@@ -26,6 +26,11 @@ export PATH="${PATH}:${DOOM_EMACS_BIN}"
 export PATH="${PATH}:${HOME}/.local/bin"
 export PATH="${PATH}:${HOME}/bin"
 
+# Nix sourcing
+export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then source $HOME/.nix-profile/etc/profile.d/nix.sh; fi
+if [ -e $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh ]; then source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh; fi
+
 #Loading local configuration
 [[ ! -f ~/.zshenv.local ]] || source ~/.zshenv.local
 
