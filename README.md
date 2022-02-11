@@ -1,5 +1,5 @@
 # dotfiles
-> This repo is not maintained anymore, I have migrated to a configuration with Nix, see [nix-config](https://github.com/xgroleau/nix-config).
+> This repo is not maintained anymore, I have migrated to a configuration with Nix, see [nix-dotfiles](https://github.com/xgroleau/nix-dotfiles).
 
 My attempt at managing my system configurations. I am using [yadm](https://yadm.io/) to manage my dotfiles.
 
